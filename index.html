@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Faixa de Gaza - Calculadora by Cássio Medeiros</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-bottom: 120px; /* espaço para o visor fixo */
+    }
+
+    h2 {
+      width: 100%;
+      padding: 10px 0;
+      margin: 0;
+      border-bottom: 2px solid #ccc;
+      text-align: center;
+      font-size: 17px;
+      background-color: #000066;
+      color: #fff;
+      margin-top: 8px;
+    }
+
+    .produto {
+      width: 100%;
+      padding: 10px 0;
+      margin: 0;
+      border-bottom: 1px solid #ccc;
+      text-align: center;
+      background-color: #ddd;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .produto:last-child {
+      border-bottom: none;
+    }
+
+    .produto span.nome {
+      display: block;
+      font-weight: bold;
+      font-size: 17px;
+      color: #222;
+    }
+
+    .produto span.preco {
+      display: block;
+      font-size: 14px;
+      color: #666;
+      margin-top: 5px;
+    }
+
+    .produto.selecionado {
+      background-color: #00bfff;
+      color: white;
+    }
+
+    .produto.selecionado span.preco {
+      color: #f0f0f0;
+    }
+
+    #quantidade-container {
+      margin: 15px;
+      text-align: center;
+    }
+
+    #quantidade {
+      font-size: 18px;
+      padding: 5px;
+      width: 80px;
+      text-align: center;
+    }
+
+    #visor {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    #desconto {
+      background-color: #007bff; /* fundo azul */
+      color: white;
+      display: block;
+      padding: 12px 0;
+      font-size: 20px;
+    }
+
+    #total {
+      background-color: #32cd32; /* fundo verde */
+      color: white;
+      display: block;
+      padding: 15px 0;
+      font-size: 22px;
+    }
+  </style>
+</head>
+<body>
+  <p style="text-align: center;">Desenvolvido por: Cássio Medeiros </br>Doações, PIX E-mail: pix@cassiomedeiros.com.br</p>
+
+  <h2>ESCOLHA A MUNIÇÃO</h2>
+
+  <div id="quantidade-container">
+    Quantidade: <input type="number" id="quantidade" min="1" value="1">
+  </div>
+
+  <div class="produto" data-preco="750">
+    <span class="nome">GLOCK RAJADA</span>
+    <span class="preco">R$ 750,00</span>
+  </div>
+  <div class="produto" data-preco="500">
+    <span class="nome">PT MK2</span>
+    <span class="preco">R$ 500,00</span>
+  </div>
+  <div class="produto" data-preco="400">
+    <span class="nome">HK P7M10</span>
+    <span class="preco">R$ 400,00</span>
+  </div>
+  <div class="produto" data-preco="875">
+    <span class="nome">MAGNUM 357</span>
+    <span class="preco">R$ 875,00</span>
+  </div>
+  <div class="produto" data-preco="625">
+    <span class="nome">DESERT</span>
+    <span class="preco">R$ 625,00</span>
+  </div>
+  <div class="produto" data-preco="950">
+    <span class="nome">MTAR</span>
+    <span class="preco">R$ 950,00</span>
+  </div>
+  <div class="produto" data-preco="900">
+    <span class="nome">MICRO UZI</span>
+    <span class="preco">R$ 900,00</span>
+  </div>
+  <div class="produto" data-preco="900">
+    <span class="nome">MP5 MK2</span>
+    <span class="preco">R$ 900,00</span>
+  </div>
+  <div class="produto" data-preco="1000">
+    <span class="nome">TEC-9</span>
+    <span class="preco">R$ 1.000,00</span>
+  </div>
+  <div class="produto" data-preco="1100">
+    <span class="nome">AK-47</span>
+    <span class="preco">R$ 1.100,00</span>
+  </div>
+  <div class="produto" data-preco="1350">
+    <span class="nome">FAMAS MK2</span>
+    <span class="preco">R$ 1.350,00</span>
+  </div>
+  <div class="produto" data-preco="1500">
+    <span class="nome">SCAR LIGHT</span>
+    <span class="preco">R$ 1.500,00</span>
+  </div>
+  <div class="produto" data-preco="1250">
+    <span class="nome">M60</span>
+    <span class="preco">R$ 1.250,00</span>
+  </div>
+  <div class="produto" data-preco="1500">
+    <span class="nome">G36</span>
+    <span class="preco">R$ 1.500,00</span>
+  </div>
+  <div class="produto" data-preco="1750">
+    <span class="nome">WINCHESTER 22</span>
+    <span class="preco">R$ 1.750,00</span>
+  </div>
+
+  <div id="visor">
+    <span id="desconto">COM PARCERIA: R$ 0,00</span>
+    <span id="total">SEM PARCERIA: R$ 0,00</span>
+  </div>
+
+  <script>
+    const produtos = document.querySelectorAll('.produto');
+    const descontoSpan = document.getElementById('desconto');
+    const totalSpan = document.getElementById('total');
+    const quantidadeInput = document.getElementById('quantidade');
+
+    let produtoSelecionado = null;
+
+    function calcularTotal() {
+      if (!produtoSelecionado) {
+        descontoSpan.innerText = 'COM PARCERIA: R$ 0,00';
+        totalSpan.innerText = 'SEM PARCERIA: R$ 0,00';
+        return;
+      }
+
+      const preco = parseInt(produtoSelecionado.getAttribute('data-preco'));
+      const quantidade = parseInt(quantidadeInput.value) || 0;
+      const total = preco * quantidade;
+      const desconto = total * 0.8; // 20% a menos
+
+      descontoSpan.innerText = 'COM PARCERIA: R$ ' + desconto.toLocaleString('pt-BR', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+
+      totalSpan.innerText = 'SEM PARCERIA: R$ ' + total.toLocaleString('pt-BR', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+
+    produtos.forEach(produto => {
+      produto.addEventListener('click', () => {
+        produtos.forEach(p => p.classList.remove('selecionado'));
+        produto.classList.add('selecionado');
+        produtoSelecionado = produto;
+        calcularTotal();
+      });
+    });
+
+    quantidadeInput.addEventListener('input', calcularTotal);
+  </script>
+</body>
+</html>
