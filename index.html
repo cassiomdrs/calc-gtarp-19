@@ -13,10 +13,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
-      padding-bottom: 120px; /* espaço para o visor fixo */
+      padding-bottom: 140px;
     }
-
     h2 {
       width: 100%;
       padding: 10px 0;
@@ -28,7 +26,6 @@
       color: #fff;
       margin-top: 8px;
     }
-
     .produto {
       width: 100%;
       padding: 10px 0;
@@ -39,46 +36,62 @@
       cursor: pointer;
       transition: background-color 0.3s;
     }
-
-    .produto:last-child {
-      border-bottom: none;
-    }
-
     .produto span.nome {
       display: block;
       font-weight: bold;
       font-size: 17px;
       color: #222;
     }
-
     .produto span.preco {
       display: block;
       font-size: 14px;
       color: #666;
       margin-top: 5px;
     }
-
     .produto.selecionado {
       background-color: #00bfff;
       color: white;
     }
-
     .produto.selecionado span.preco {
       color: #f0f0f0;
     }
-
     #quantidade-container {
       margin: 15px;
       text-align: center;
     }
-
     #quantidade {
       font-size: 18px;
       padding: 5px;
       width: 80px;
       text-align: center;
     }
-
+    #adicionar, #resetar {
+      margin: 5px;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    #adicionar {
+      background: green;
+      color: white;
+    }
+    #resetar {
+      background: red;
+      color: white;
+    }
+    #carrinho {
+      width: 90%;
+      margin: 15px auto;
+      padding: 10px;
+      background: #fff;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+    #carrinho ul {
+      padding-left: 20px;
+    }
     #visor {
       position: fixed;
       bottom: 0;
@@ -88,17 +101,15 @@
       font-size: 22px;
       font-weight: bold;
     }
-
     #desconto {
-      background-color: #007bff; /* fundo azul */
+      background-color: #007bff;
       color: white;
       display: block;
       padding: 12px 0;
       font-size: 20px;
     }
-
     #total {
-      background-color: #32cd32; /* fundo verde */
+      background-color: #32cd32;
       color: white;
       display: block;
       padding: 15px 0;
@@ -113,67 +124,29 @@
 
   <div id="quantidade-container">
     Quantidade: <input type="number" id="quantidade" min="1" value="1">
+    <button id="adicionar">Adicionar ao Carrinho</button>
+    <button id="resetar">Resetar</button>
   </div>
 
-  <div class="produto" data-preco="750">
-    <span class="nome">GLOCK RAJADA</span>
-    <span class="preco">R$ 750,00</span>
-  </div>
-  <div class="produto" data-preco="500">
-    <span class="nome">PT MK2</span>
-    <span class="preco">R$ 500,00</span>
-  </div>
-  <div class="produto" data-preco="400">
-    <span class="nome">HK P7M10</span>
-    <span class="preco">R$ 400,00</span>
-  </div>
-  <div class="produto" data-preco="875">
-    <span class="nome">MAGNUM 357</span>
-    <span class="preco">R$ 875,00</span>
-  </div>
-  <div class="produto" data-preco="625">
-    <span class="nome">DESERT</span>
-    <span class="preco">R$ 625,00</span>
-  </div>
-  <div class="produto" data-preco="950">
-    <span class="nome">MTAR</span>
-    <span class="preco">R$ 950,00</span>
-  </div>
-  <div class="produto" data-preco="900">
-    <span class="nome">MICRO UZI</span>
-    <span class="preco">R$ 900,00</span>
-  </div>
-  <div class="produto" data-preco="900">
-    <span class="nome">MP5 MK2</span>
-    <span class="preco">R$ 900,00</span>
-  </div>
-  <div class="produto" data-preco="1000">
-    <span class="nome">TEC-9</span>
-    <span class="preco">R$ 1.000,00</span>
-  </div>
-  <div class="produto" data-preco="1100">
-    <span class="nome">AK-47</span>
-    <span class="preco">R$ 1.100,00</span>
-  </div>
-  <div class="produto" data-preco="1350">
-    <span class="nome">FAMAS MK2</span>
-    <span class="preco">R$ 1.350,00</span>
-  </div>
-  <div class="produto" data-preco="1500">
-    <span class="nome">SCAR LIGHT</span>
-    <span class="preco">R$ 1.500,00</span>
-  </div>
-  <div class="produto" data-preco="1250">
-    <span class="nome">M60</span>
-    <span class="preco">R$ 1.250,00</span>
-  </div>
-  <div class="produto" data-preco="1500">
-    <span class="nome">G36</span>
-    <span class="preco">R$ 1.500,00</span>
-  </div>
-  <div class="produto" data-preco="1750">
-    <span class="nome">WINCHESTER 22</span>
-    <span class="preco">R$ 1.750,00</span>
+  <div class="produto" data-preco="750"><span class="nome">GLOCK RAJADA</span><span class="preco">R$ 750,00</span></div>
+  <div class="produto" data-preco="500"><span class="nome">PT MK2</span><span class="preco">R$ 500,00</span></div>
+  <div class="produto" data-preco="400"><span class="nome">HK P7M10</span><span class="preco">R$ 400,00</span></div>
+  <div class="produto" data-preco="875"><span class="nome">MAGNUM 357</span><span class="preco">R$ 875,00</span></div>
+  <div class="produto" data-preco="625"><span class="nome">DESERT</span><span class="preco">R$ 625,00</span></div>
+  <div class="produto" data-preco="950"><span class="nome">MTAR</span><span class="preco">R$ 950,00</span></div>
+  <div class="produto" data-preco="900"><span class="nome">MICRO UZI</span><span class="preco">R$ 900,00</span></div>
+  <div class="produto" data-preco="900"><span class="nome">MP5 MK2</span><span class="preco">R$ 900,00</span></div>
+  <div class="produto" data-preco="1000"><span class="nome">TEC-9</span><span class="preco">R$ 1.000,00</span></div>
+  <div class="produto" data-preco="1100"><span class="nome">AK-47</span><span class="preco">R$ 1.100,00</span></div>
+  <div class="produto" data-preco="1350"><span class="nome">FAMAS MK2</span><span class="preco">R$ 1.350,00</span></div>
+  <div class="produto" data-preco="1500"><span class="nome">SCAR LIGHT</span><span class="preco">R$ 1.500,00</span></div>
+  <div class="produto" data-preco="1250"><span class="nome">M60</span><span class="preco">R$ 1.250,00</span></div>
+  <div class="produto" data-preco="1500"><span class="nome">G36</span><span class="preco">R$ 1.500,00</span></div>
+  <div class="produto" data-preco="1750"><span class="nome">WINCHESTER 22</span><span class="preco">R$ 1.750,00</span></div>
+
+  <div id="carrinho">
+    <strong>Itens no Carrinho:</strong>
+    <ul id="lista-carrinho"></ul>
   </div>
 
   <div id="visor">
@@ -186,42 +159,61 @@
     const descontoSpan = document.getElementById('desconto');
     const totalSpan = document.getElementById('total');
     const quantidadeInput = document.getElementById('quantidade');
+    const listaCarrinho = document.getElementById('lista-carrinho');
+    const btnAdicionar = document.getElementById('adicionar');
+    const btnResetar = document.getElementById('resetar');
 
     let produtoSelecionado = null;
+    let carrinho = [];
 
-    function calcularTotal() {
-      if (!produtoSelecionado) {
-        descontoSpan.innerText = 'COM PARCERIA: R$ 0,00';
-        totalSpan.innerText = 'SEM PARCERIA: R$ 0,00';
-        return;
-      }
-
-      const preco = parseInt(produtoSelecionado.getAttribute('data-preco'));
-      const quantidade = parseInt(quantidadeInput.value) || 0;
-      const total = preco * quantidade;
-      const desconto = total * 0.8; // 20% a menos
-
-      descontoSpan.innerText = 'COM PARCERIA: R$ ' + desconto.toLocaleString('pt-BR', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      });
-
-      totalSpan.innerText = 'SEM PARCERIA: R$ ' + total.toLocaleString('pt-BR', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      });
-    }
-
+    // Selecionar produto
     produtos.forEach(produto => {
       produto.addEventListener('click', () => {
         produtos.forEach(p => p.classList.remove('selecionado'));
         produto.classList.add('selecionado');
         produtoSelecionado = produto;
-        calcularTotal();
       });
     });
 
-    quantidadeInput.addEventListener('input', calcularTotal);
+    // Adicionar ao carrinho
+    btnAdicionar.addEventListener('click', () => {
+      if (!produtoSelecionado) return alert('Selecione um produto primeiro!');
+      const nome = produtoSelecionado.querySelector('.nome').innerText;
+      const preco = parseInt(produtoSelecionado.getAttribute('data-preco'));
+      const quantidade = parseInt(quantidadeInput.value) || 1;
+
+      carrinho.push({ nome, preco, quantidade });
+      atualizarCarrinho();
+    });
+
+    // Resetar a calculadora
+    btnResetar.addEventListener('click', () => {
+      carrinho = [];
+      produtoSelecionado = null;
+      produtos.forEach(p => p.classList.remove('selecionado'));
+      listaCarrinho.innerHTML = '';
+      descontoSpan.innerText = 'COM PARCERIA: R$ 0,00';
+      totalSpan.innerText = 'SEM PARCERIA: R$ 0,00';
+      quantidadeInput.value = 1;
+    });
+
+    function atualizarCarrinho() {
+      listaCarrinho.innerHTML = '';
+      let total = 0;
+      carrinho.forEach(item => {
+        const subtotal = item.preco * item.quantidade;
+        const descontoItem = subtotal * 0.8;
+        total += subtotal;
+
+        const li = document.createElement('li');
+        li.innerText = `${item.quantidade}x ${item.nome} = R$ ${subtotal.toLocaleString('pt-BR',{minimumFractionDigits:2})} | Com parceria: R$ ${descontoItem.toLocaleString('pt-BR',{minimumFractionDigits:2})}`;
+        listaCarrinho.appendChild(li);
+      });
+
+      const desconto = total * 0.8;
+      descontoSpan.innerText = 'COM PARCERIA: R$ ' + desconto.toLocaleString('pt-BR',{minimumFractionDigits:2});
+      totalSpan.innerText = 'SEM PARCERIA: R$ ' + total.toLocaleString('pt-BR',{minimumFractionDigits:2});
+    }
   </script>
 </body>
 </html>
